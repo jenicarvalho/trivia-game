@@ -2,7 +2,7 @@ import React from 'react'
 import { H1 } from './Headline.styles'
 
 interface Props {
-  children: string,
+  children: any,
   border?: boolean
 }
 
