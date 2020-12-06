@@ -10,8 +10,8 @@ export enum AnswersTypes {
  * Data Types
  */
 export interface Answers {
-  question: number,
-  answer: boolean
+  question: string,
+  correct: boolean
 }
 
 export interface AnswerResponse {

@@ -48,9 +48,14 @@ const Quiz = (props: Props) => {
 
   const setAnswer = (answer: boolean) => {
 
+    let { question, correct_answer } = questions.results[questionIndex]
+    
+    let correct = Boolean(JSON.parse(correct_answer.toLowerCase())) === answer ? true : false
+
     let pusherAnswer: any = answersArray
-    let currentAnswer = { question: questionIndex, answer}
+    let currentAnswer = { question, correct}
     pusherAnswer.push(currentAnswer)
+
     setAnswersArray(pusherAnswer)
 
     setAnswers(pusherAnswer)
@@ -79,7 +84,6 @@ const Quiz = (props: Props) => {
           <Card>
             { AllHtmlEntities.decode(questions.results[questionIndex].question) }
           </Card>
-          
           <ButtonsGroup>
             <Button answer={true} onClick={() => setAnswer(true)}>
               True
