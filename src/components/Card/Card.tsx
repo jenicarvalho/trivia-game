@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
+import { Container } from './Card.styles'
 
 interface Props {
   children: string
 }
 
 const Card = (props: Props) => {
-return <div>{props.children}</div>;
+  return <Container>{props.children}</Container>
 }
 
-export default Card;
+export default Card

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Headline from '../../components/Headline'
 import { Container, Explanation, CTA } from './home.styles'
 import { Link } from 'react-router-dom'
@@ -19,7 +19,7 @@ const Home = () => {
         </Link>
       </CTA>
     </Container>  
-  );
+  )
 }
 
-export default Home;
+export default Home

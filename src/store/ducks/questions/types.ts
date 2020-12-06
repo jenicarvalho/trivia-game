@@ -28,6 +28,6 @@ export interface QuestionsResponse {
  * State Type
  */
 export interface QuestionsState {
-  readonly data: QuestionsResponse;
-  readonly loadingQuestions: boolean;
+  readonly data: QuestionsResponse
+  readonly loadingQuestions: boolean
 }

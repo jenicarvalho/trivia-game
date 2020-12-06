@@ -6,4 +6,5 @@ export const H1 = styled.h1`
   line-height: 45px;
   text-align: center;
   font-weight: 100;
+  padding-bottom: 15px;
 `;

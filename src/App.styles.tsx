@@ -6,10 +6,13 @@ const GlobalStyle = createGlobalStyle`
     --yellow: #ffdd01;
     --gray: #595958;
     --green: #00d400;
+    --greenMedium: #00a000;
+    --greenDark: #077d07;
+    --greenDarker: #016701;
     --red: #ff5800;
     --redMedium: #ef0909;
-    --redDardk: #b30000;
-    --redDardker: #8c0202;
+    --redDark: #b30000;
+    --redDarker: #8c0202;
   }
 
   * {
@@ -40,19 +43,25 @@ const GlobalStyle = createGlobalStyle`
     margin-top: 20px;
     cursor: pointer;
     outline: none;
-    box-shadow: 0 6px 0 var(--redDardk);
+    box-shadow: 0 6px 0 var(--redDark);
 
     &:hover {
-      background: var(--redDardk);
-      box-shadow: 0 6px 0 var(--redDardker);
+      background: var(--redDark);
+      box-shadow: 0 6px 0 var(--redDarker);
     }
 
     &:active {
       position: relative;
       top: 6px;
-      box-shadow: 0 0px 0 var(--redDardk);
-      background: var(--redDardk);
+      box-shadow: 0 0px 0 var(--redDark);
+      background: var(--redDark);
     }
+  }
+
+  hr {    
+    width: 200px;
+    opacity: 0.2;
+  }
 `;
 
 const Main = styled('main')`
@@ -67,7 +76,7 @@ const Main = styled('main')`
   justify-content: space-between;
   max-width: 600px;
   height: 95vh;
-  padding: 50px 20px;
+  padding: 50px;
 `
 
 export {

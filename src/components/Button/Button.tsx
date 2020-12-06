@@ -1,21 +1,14 @@
-import { ButtonLink, ButtonStyled } from './Button.styles'
+import { Container } from './Button.styles'
 
 interface Props {
   children: string,
-  link?: string | undefined
+  answer?: boolean,
+  onClick?: any
 }
 
 const Button = (props: Props) => {
-  const { link, children } = props
-  return (
-    <>
-      { link ? 
-      <ButtonLink to={link}>{children}</ButtonLink>
-      :
-      <ButtonStyled>{children}</ButtonStyled>
-      }
-    </>
-  )
+  const { children, answer, ...rest } = props
+  return   <Container answer={answer} {...rest}>{children}</Container>
 }
 
-export default Button;
+export default Button

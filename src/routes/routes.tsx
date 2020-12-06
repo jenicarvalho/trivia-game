@@ -5,7 +5,7 @@ import Home from '../pages/Home'
 import Quiz from '../pages/Quiz'
 import Result from '../pages/Result'
 
-const history = createBrowserHistory();
+const history = createBrowserHistory()
 
 const Routes = () => (
   <Router history={history}>
@@ -15,6 +15,6 @@ const Routes = () => (
         <Route path="/result" exact  component={Result} />
     </Switch>
   </Router>
-);
+)
 
-export default Routes;
+export default Routes
