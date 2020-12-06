@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
+import { AllHtmlEntities } from 'html-entities'
 
 import Headline from '../../components/Headline'
 import Button from '../../components/Button'
-import Accordion from '../../components/Accordion'
-import { Container } from './result.styles'
+import { AnswersList, AnswerItem } from './result.styles'
 
 import * as AnswersActions from '../../store/ducks/answers/actions'
 import { AnswerResponse, Answers } from '../../store/ducks/answers/types'
@@ -26,14 +26,21 @@ const Result = (props: Props) => {
 
   const { answers } = props
 
-  console.log('answers', answers)
-  
+  const quantityCorrect = answers.AnswersResult.filter( answer => answer.correct === true).length
+
   return (
     <>
       <Headline>
-        You scored 3/10
+        You scored {`${quantityCorrect}`}/10
       </Headline>
-      <Accordion />
+      <AnswersList>
+        {answers && answers.AnswersResult.map(( answer: Answers ) => (
+          <AnswerItem color={answer.correct ? 'var(--green)' : 'var(--red)'}>
+            <span>{answer.correct ? '+' : '-'}</span> 
+            { AllHtmlEntities.decode(answer.question) }
+          </AnswerItem>
+        ))}
+      </AnswersList>
       <Button onClick={() => {}}>
         Play again?
       </Button>
