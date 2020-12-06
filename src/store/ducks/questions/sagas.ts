@@ -1,22 +1,22 @@
-import { call, put } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects"
 
-import { loadQuestionsSuccess, loadQuestionsFailure } from "./actions";
-import { QuestionsResponse } from "./types";
+import { loadQuestionsSuccess, loadQuestionsFailure } from "./actions"
+import { QuestionsResponse } from "./types"
 
-import getQuestions from "../../../services/questions-service";
+import QuestionsService from "../../../services/questions-service"
 
 interface Action {
-  type: string;
-  payload: QuestionsResponse;
+  type: string
+  payload: QuestionsResponse
 }
 
-export function* getEnd2EndId(action: Action) {
+export function* getQuestions(action: Action) {
   try {
-    const response = yield call(getQuestions, action.payload);
-    yield put(loadQuestionsSuccess(response.data));
+    const response: QuestionsResponse = yield call(QuestionsService.getQuestions)
+    yield put(loadQuestionsSuccess(response))
   } catch (err) {
   
     console.log(err)
-    yield put(loadQuestionsFailure());
+    yield put(loadQuestionsFailure())
   }
 }
