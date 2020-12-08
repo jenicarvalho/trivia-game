@@ -6,10 +6,12 @@ import rootSaga from "./ducks/rootSaga"
 
 import { QuestionsState } from "./ducks/questions/types"
 import { AnswerState } from "./ducks/answers/types"
+import { Resetstate } from "./ducks/playAgain/types"
 
 export interface ApplicationState {
   questions: QuestionsState
   answers: AnswerState
+  playAgain: Resetstate
 }
 
 declare global {
