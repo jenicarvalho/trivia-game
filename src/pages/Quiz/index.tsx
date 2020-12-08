@@ -35,7 +35,7 @@ type Props = StateProps & DispatchProps
 const Quiz = (props: Props) => {
   const history = useHistory()
 
-  const { loadQuestionsRequest, setAnswers, questions, loadingQuestions, answers } = props
+  const { loadQuestionsRequest, setAnswers, questions, loadingQuestions } = props
 
   const [questionIndex, setQuestionIndex] = useState(0)
   const [answersArray, setAnswersArray] = useState([])
