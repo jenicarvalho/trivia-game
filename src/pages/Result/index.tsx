@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AllHtmlEntities } from 'html-entities'
 import { useHistory } from "react-router-dom"
 
@@ -8,32 +7,23 @@ import Headline from '../../components/Headline'
 import Button from '../../components/Button'
 import { AnswersList, AnswerItem } from './result.styles'
 
-import * as AnswersActions from '../../store/ducks/answers/actions'
 import * as PlayAgainActions from '../../store/ducks/playAgain/actions'
-import { AnswerResponse, Answers } from '../../store/ducks/answers/types'
+import { Answers } from '../../store/ducks/answers/types'
 import { ApplicationState } from '../../store'
 
-interface StateProps {
-  loadingAnswers: boolean,
-  answers: AnswerResponse
-}
-
-interface DispatchProps {
-  getAnswers(answer: Answers ): void,
-  setReset(reset: boolean): void
-}
-
-type Props = StateProps & DispatchProps
-
-const Result = (props: Props) => {
+const Result = () => {
   const history = useHistory()
 
-  const { answers, setReset } = props
+  const dispatch = useDispatch();
+
+  const { answers } = useSelector((state: ApplicationState) => ({
+    answers: state.answers.data,
+  }));
 
   const quantityCorrect = answers.AnswersResult.filter( answer => answer.correct === true).length
 
   const playAgain = () => {
-    setReset(true)
+    dispatch(PlayAgainActions.setReset())
     history.push(`/`);
   }
 
@@ -57,18 +47,4 @@ const Result = (props: Props) => {
   )
 }
 
-const mapStateToProps = (state: ApplicationState) => ({
-  loadingAnswers: state.answers.loadingAnswers,
-  answers: state.answers.data
-})
-
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(
-    {
-      ...AnswersActions,
-      ...PlayAgainActions
-    },
-    dispatch
-  )
-
-export default connect(mapStateToProps, mapDispatchToProps)(Result)
+export default Result

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AllHtmlEntities } from 'html-entities'
 
 import { useHistory } from "react-router-dom"
@@ -14,41 +13,31 @@ import Button from '../../components/Button'
 import { Content, ButtonsGroup } from './quiz.styles'
 import * as QuestionsActions from '../../store/ducks/questions/actions'
 import * as AnswersActions from '../../store/ducks/answers/actions'
-import { QuestionsResponse } from '../../store/ducks/questions/types'
-import { AnswerResponse, Answers } from '../../store/ducks/answers/types'
 import { ApplicationState } from '../../store'
 
-interface StateProps {
-  loadingQuestions: boolean,
-  questions: QuestionsResponse,
-  answers: AnswerResponse
-}
+const Quiz = () => {
 
-interface DispatchProps {
-  loadQuestionsRequest(): void,
-  setAnswers(answer: Answers ): void
-}
+  const dispatch = useDispatch();
 
-type Props = StateProps & DispatchProps
+  const { questions, loadingQuestions } = useSelector((state: ApplicationState) => ({
+    questions: state.questions,
+    loadingQuestions: state.questions.loadingQuestions
+  }));
 
-
-const Quiz = (props: Props) => {
   const history = useHistory()
-
-  const { loadQuestionsRequest, setAnswers, questions, loadingQuestions } = props
 
   const [questionIndex, setQuestionIndex] = useState(0)
   const [answersArray, setAnswersArray] = useState([])
 
-  const questionsLength = questions.results.length
+  const questionsLength = questions.data.results.length
 
   useEffect(() =>{
-    loadQuestionsRequest()
+    dispatch(QuestionsActions.loadQuestionsRequest())
   }, [])
 
   const setAnswer = (answer: boolean) => {
 
-    let { question, correct_answer } = questions.results[questionIndex]
+    let { question, correct_answer } = questions.data.results[questionIndex]
     
     let correct = Boolean(JSON.parse(correct_answer.toLowerCase())) === answer ? true : false
 
@@ -58,7 +47,7 @@ const Quiz = (props: Props) => {
 
     setAnswersArray(pusherAnswer)
 
-    setAnswers(pusherAnswer)
+    dispatch(AnswersActions.setAnswers(pusherAnswer))
 
     nextQuestion()
   }
@@ -71,18 +60,19 @@ const Quiz = (props: Props) => {
     }
   }
 
+
   return (
     <> 
       { loadingQuestions ? <Loader /> :
       
       <Content>
-        { questions.responseCode === 0 ?  <h1>Sorry, something went wrong!</h1> :
+        { questions.data.responseCode === 0 ?  <h1>Sorry, something went wrong!</h1> :
         <>
           <Headline border={true}>
-            { AllHtmlEntities.decode(questions.results[questionIndex].category) }
+            { AllHtmlEntities.decode(questions.data.results[questionIndex].category) }
           </Headline>
           <Card>
-            { AllHtmlEntities.decode(questions.results[questionIndex].question) }
+            { AllHtmlEntities.decode(questions.data.results[questionIndex].question) }
           </Card>
           <ButtonsGroup>
             <Button answer={true} onClick={() => setAnswer(true)}>
@@ -101,19 +91,4 @@ const Quiz = (props: Props) => {
   )
 }
 
-const mapStateToProps = (state: ApplicationState) => ({
-  loadingQuestions: state.questions.loadingQuestions,
-  questions: state.questions.data,
-  answers: state.answers.data
-})
-
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(
-    {
-      ...QuestionsActions,
-      ...AnswersActions
-    },
-    dispatch
-  )
-
-export default connect(mapStateToProps, mapDispatchToProps)(Quiz)
+export default Quiz
