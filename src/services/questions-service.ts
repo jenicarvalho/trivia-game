@@ -1,7 +1,7 @@
-import http from "./api"
+import axios from "axios"
 
 const QuestionsService = {
-  getQuestions: () => http.get('?amount=10&difficulty=hard&type=boolean')
+  getQuestions: () => axios.get('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean')
 }
 
 export default QuestionsService
