@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history"
 import Home from '../pages/Home'
 import Quiz from '../pages/Quiz'
 import Result from '../pages/Result'
+import User from '../pages/User'
 
 const history = createBrowserHistory()
 
@@ -13,6 +14,7 @@ const Routes = () => (
         <Route path="/" exact component={Home} />
         <Route path="/quiz" exact  component={Quiz} />
         <Route path="/result" exact  component={Result} />
+        <Route path="/user" exact  component={User} />
     </Switch>
   </Router>
 )
