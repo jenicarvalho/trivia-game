@@ -5,4 +5,4 @@
  yarn start // run on browser
 ```
 
-[See the result here](https://trivia-game-2hlk8.ondigitalocean.app)
+[See the result here](https://react-trivia-game-app.netlify.app/)
