@@ -32,7 +32,7 @@ const CTA = styled.div`
   justify-content: center;
 
   p {
-    margin-right: 20px;
+    margin: 20px;
   }
 `;
 
