@@ -2,9 +2,10 @@ import styled, { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    --purple: #7042a9;
+    --purple: #695bdf;
     --yellow: #ffdd01;
     --gray: #595958;
+    --black: #444;
     --green: #00d400;
     --greenMedium: #00a000;
     --greenDark: #077d07;
@@ -22,12 +23,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Dosis', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
+    color: var(--black);
     background: var(--purple);
-    background: -moz-linear-gradient(90deg, rgba(84,21,160,0.9) 29%, rgba(143,52,255,1) 71%, rgba(176,140,221,1) 100%);
-    background: -webkit-linear-gradient(90deg, rgba(84,21,160,0.9) 29%, rgba(143,52,255,1) 71%, rgba(176,140,221,1) 100%);
-    background: linear-gradient(90deg, rgba(84,21,160,0.9) 29%, rgba(143,52,255,1) 71%, rgba(176,140,221,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5415a2",endColorstr="#b08cdd",GradientType=1);
   }
 
   button, a {
@@ -65,11 +62,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Main = styled('main')`
-  background: rgb(255 255 255 / 3%);
+  background: #fff;
   margin: 10px auto;
   border-radius: 20px;
-  border: 1px solid rgb(255 255 255 / 8%);
-  box-shadow: 1px 1px 20px rgb(0 0 0 / 10%);
+  border: 4px solid rgb(105 92 223 / 35%);
   display: flex; 
   flex-direction: column;
   align-items: center;

@@ -12,17 +12,14 @@ const Home = () => {
       <Explanation>
         You will be presented with 10 <strong>True</strong> or <strong>False</strong> questions.
       </Explanation>
-      <CTA> 
-        <Link to="/user">
-          Users
-        </Link>
+      <CTA>
         <p>Can you score 100%?</p>
         <Link to="/quiz">
           Begin
         </Link>
       </CTA>
-     
-    </Container>  
+
+    </Container>
   )
 }
 
