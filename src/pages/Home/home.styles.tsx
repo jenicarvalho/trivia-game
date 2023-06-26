@@ -11,7 +11,7 @@ const Container = styled.div`
 const Explanation = styled.div`
   font-size: 30px;
   margin: 20px auto;
-  color: rgba(255,255,255,0.5);
+  color: var(--black);
   max-width: 350px;
 
   strong { text-transform: uppercase }
@@ -33,6 +33,7 @@ const CTA = styled.div`
 
   p {
     margin: 20px;
+    color: var(--black);
   }
 `;
 
