@@ -43,7 +43,7 @@ const CategorySelection = () => {
     setCategoryID(id);
     play();
     setTimeout(() => {
-      navigate('/');
+      navigate('/quiz');
     }, 1000);
   }
 
