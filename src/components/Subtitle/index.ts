@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Subtitle = styled.h1`
+export const Subtitle = styled.h2`
   font-family: 'Courier New', Courier, monospace;
   color: #7f7f7f;
   text-align: center;
