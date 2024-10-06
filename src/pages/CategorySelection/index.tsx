@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { Title } from '../../components/Title';
 import { CategoryCard, CategoryContainer, Container } from './styles';
 import { Subtitle } from '../../components/Subtitle';
+import selectSound from '../../assets/audio/select.wav';
+import useSound from 'use-sound';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
-  { id: 0, label: 'Any Category', image: 'https://picsum.photos/300/200' },
+  { id: 0, label: 'Any Category'},
   { id: 9, label: 'General Knowledge' },
   { id: 10, label: 'Entertainment: Books' },
   { id: 11, label: 'Entertainment: Film' },
@@ -32,7 +35,17 @@ const categories = [
 ];
 
 const CategorySelection = () => {
+  const navigate = useNavigate();
+  const [play] = useSound(selectSound);
   const [categoryID, setCategoryID] = useState(0);
+
+  const selectAndGo = (id: number) => {
+    setCategoryID(id);
+    play();
+    setTimeout(() => {
+      navigate('/');
+    }, 1000);
+  }
 
   return (
     <Container>
@@ -40,8 +53,8 @@ const CategorySelection = () => {
       <Subtitle>Select a category you are familiar with to answer 10 true or false questions.</Subtitle>
 
       <CategoryContainer>
-        {categories.map(({ id, label, image }) => (
-          <CategoryCard key={id} onClick={() => setCategoryID(id)} image={image}>
+        {categories.map(({ id, label }) => (
+          <CategoryCard key={id} onClick={() => selectAndGo(id)}>
             <span>{label}</span>
           </CategoryCard>
         ))}
