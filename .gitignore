@@ -1,0 +1,20 @@
+# Ignore compiled binaries
+*.exe
+*.dll
+*.so
+
+# Ignore build output directories
+/bin/
+/build/
+/out/
+
+# Ignore package manager directories
+/node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.DS_Store
