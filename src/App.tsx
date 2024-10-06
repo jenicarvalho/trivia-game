@@ -1,5 +1,6 @@
 import { Main } from './global'
-import Home from './Home'
+import CategorySelection from './pages/CategorySelection'
+import Home from './pages/Home'
 
 function App() {
 
