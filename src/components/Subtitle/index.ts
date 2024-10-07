@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Subtitle = styled.h2`
   font-family: 'Courier New', Courier, monospace;
-  color: #7f7f7f;
+  color: var(--gray);
   text-align: center;
   margin-top: 2rem;
   font-size: 1.5rem;
@@ -17,5 +17,9 @@ export const Subtitle = styled.h2`
 
   span {
     color: var(--green)
+  }
+
+  @media(max-width: 768px) {
+    margin: 2rem auto;
   }
 `;

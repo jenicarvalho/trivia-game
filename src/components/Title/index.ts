@@ -34,11 +34,11 @@ export const Title = styled.h1<{ size?: string }>`
   }
 
   @media(max-width: 768px) {
-    ont-size: 3rem;
+    font-size: 3rem;
     p { font-size: 1.2rem; }
   }
 
-  @media(max-width: 375px) {
+  @media(max-width: 420px) {
     font-size: 2rem;
     p { font-size: 1rem; }
   }
