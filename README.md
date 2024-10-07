@@ -1,50 +1,63 @@
-# React + TypeScript + Vite
+# Trivia Game 🧠🔥
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **Trivia Game**, the ultimate quiz game to test your knowledge and challenge your friends! Whether you're a trivia enthusiast or just looking to have some fun, this game is for you.
 
-Currently, two official plugins are available:
+## 📜 Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Think you're a trivia game? Can you score 100% and prove it?** Test your knowledge now and see if you can conquer all the levels. With questions ranging from general knowledge to niche topics, there's something for everyone!
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+Make sure you have **Node.js** and **npm** (or **yarn**) installed on your machine.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/jenicarvalho/trivia-game
+   cd trivia-game
+  ```
+2. Install the dependencies:
+   ```bash
+   npm install
+  ```
+
+### Available Scripts
+
+Start the Development Server:
+```bash
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Build for Production:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run build
 ```
+
+Lint the Codebase:
+
+```bash
+npm run lint
+```
+
+Preview the Production Build:
+
+```bash
+npm run preview
+```
+
+### 🎮 How to Play
+1. Open the application and click the Play button.
+2. Choose a category.
+3. Answer the trivia questions as they appear on the screen.
+4. Try to get a perfect score!
+
+### 📚 Technologies Used
+React
+TypeScript
+Vite
+ESLint
