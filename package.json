@@ -1,7 +1,8 @@
 {
   "name": "trivia-game",
   "private": true,
-  "version": "0.0.0",
+  "author": "Jeniffer Carvalho",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
