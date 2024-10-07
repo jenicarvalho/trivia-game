@@ -18,7 +18,7 @@ export const Results = styled.ul`
   list-style: none;
   width: 100%;
   max-width: 600px;
-  height: 450px;
+  height: 400px;
   overflow-y: auto;
 
   li {

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Title } from '../../components/Title';
 import { CategoryCard, CategoryContainer, Container } from './styles';
 import { Subtitle } from '../../components/Subtitle';
@@ -37,10 +36,8 @@ const categories = [
 const CategorySelection = () => {
   const navigate = useNavigate();
   const [play] = useSound(selectSound);
-  const [categoryID, setCategoryID] = useState(0);
 
   const selectAndGo = (id: number) => {
-    setCategoryID(id);
     play();
     setTimeout(() => {
       navigate('/quiz', { state: { categoryID: id } });
