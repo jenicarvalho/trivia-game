@@ -7,7 +7,7 @@ import useSound from 'use-sound';
 import { useNavigate } from 'react-router-dom';
 
 const categories = [
-  { id: 0, label: 'Any Category'},
+  { id: 0, label: 'Any Category' },
   { id: 9, label: 'General Knowledge' },
   { id: 10, label: 'Entertainment: Books' },
   { id: 11, label: 'Entertainment: Film' },
@@ -43,7 +43,7 @@ const CategorySelection = () => {
     setCategoryID(id);
     play();
     setTimeout(() => {
-      navigate('/quiz');
+      navigate('/quiz', { state: { categoryID: id } });
     }, 1000);
   }
 
