@@ -4,7 +4,6 @@ import { Play } from "../Home/styles";
 import useSound from 'use-sound';
 import playSound from '../../assets/audio/play.wav';
 import incorrectSound from '../../assets/audio/incorrect.wav';
-import he from 'he';
 import { Subtitle } from "../../components/Subtitle";
 
 const ResultsPage = () => {
@@ -35,7 +34,7 @@ const ResultsPage = () => {
             {results.map((result: any, index: number) => (
               <li key={index} className={result.isCorrect ? 'correct' : 'incorrect'}>
                 <span>{result.isCorrect ? '✅' : '❌'}</span>
-                {he.decode(result.question)}
+                <span dangerouslySetInnerHTML={{ __html: result.question}}></span>
               </li>
             ))}
           </Results>

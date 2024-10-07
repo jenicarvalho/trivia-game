@@ -89,7 +89,7 @@ const Quiz = () => {
     <Container>
       {questions?.length > 0 ? (
         <>
-          <h1>{questions[currentQuestionIndex].category}</h1>
+          <h1 dangerouslySetInnerHTML={{ __html: questions[currentQuestionIndex].category}}/>
           <Subtitle dangerouslySetInnerHTML={{ __html: questions[currentQuestionIndex].question }} />
           <Buttons>
             <Button color="var(--green)" onClick={() => handleAnswer('True')}>True</Button>
