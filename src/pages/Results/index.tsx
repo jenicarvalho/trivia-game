@@ -6,7 +6,6 @@ import playSound from '../../assets/audio/play.wav';
 import incorrectSound from '../../assets/audio/result/incorrect.wav';
 import perfectSound from '../../assets/audio/result/perfect.wav';
 import { Subtitle } from "../../components/Subtitle";
-import { useEffect } from "react";
 
 const ResultsPage = () => {
   const location = useLocation();
@@ -25,14 +24,11 @@ const ResultsPage = () => {
     }, 1000);
   }
 
-  useEffect(() => {
-    if (totalCorrectAnswers === 10) {
-      perfectPlay();
-    } else {
-      incorrectPlay();
-    }
+  if (totalCorrectAnswers === 10) {
+    perfectPlay();
+  } else {
+    incorrectPlay();
   }
-  , [perfectPlay, incorrectPlay, totalCorrectAnswers]);
 
   return (
     <Container>
