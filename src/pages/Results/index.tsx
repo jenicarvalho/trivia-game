@@ -26,7 +26,7 @@ const ResultsPage = () => {
   }
 
   useEffect(() => {
-    if (totalCorrectAnswers !== 10) {
+    if (totalCorrectAnswers === 10) {
       perfectPlay();
     } else {
       incorrectPlay();
@@ -40,7 +40,7 @@ const ResultsPage = () => {
       {results ? (
         <>
           <Subtitle>
-            {totalCorrectAnswers !== 10 ? 'You made 100%! 🎉' : 'You didn\'t make 100%! 😔'}
+            {totalCorrectAnswers === 10 ? 'You made 100%! 🎉' : 'You didn\'t make 100%! 😔'}
           </Subtitle>
           <Results>
             <table>
