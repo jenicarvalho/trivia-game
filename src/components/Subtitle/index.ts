@@ -8,7 +8,7 @@ export const Subtitle = styled.h2`
   font-size: 1.5rem;
   font-weight: 500;
   max-width: 750px;
-  margin: 4rem auto;
+  margin: 3rem auto;
 
   &::selection {
     background-color: var(--green);

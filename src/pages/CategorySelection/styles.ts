@@ -3,6 +3,20 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   text-align: center;
+
+  &:before {
+    content: '';
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 12px ), repeating-linear-gradient( #00000055, #000000 );
+    background-size: contain;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    opacity: 0.03;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+
 `;
 
 export const CategoryContainer = styled.div`

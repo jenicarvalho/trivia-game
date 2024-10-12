@@ -3,8 +3,12 @@ import { Subtitle } from "../../components/Subtitle";
 import { Container, Buttons, Button, Breadcrumb } from "./styles";
 import { useEffect, useState, useRef } from "react";
 import useSound from 'use-sound';
-import falseSound from '../../assets/audio/false.wav';
-import trueSound from '../../assets/audio/true.wav';
+import wrongSound from '../../assets/audio/wrong.wav';
+import crowdYeah from '../../assets/audio/correct/crowd-yeah.wav';
+import crowdYeah2 from '../../assets/audio/correct/crowd2-yeah.wav';
+import girlsYeah from '../../assets/audio/correct/girls-yeah.wav';
+import kidsYeah from '../../assets/audio/correct/kids-yeah.wav';
+import wooYeah from '../../assets/audio/correct/woo-yeah.wav';
 
 interface Question {
   type: string;
@@ -20,13 +24,19 @@ const Quiz = () => {
   const navigate = useNavigate();
   const { categoryID } = location.state || {};
 
-  const [playFalse] = useSound(falseSound);
-  const [playTrue] = useSound(trueSound);
+  const [playWrong] = useSound(wrongSound);
+  const [playCrowdYeah] = useSound(crowdYeah);
+  const [playCrowdYeah2] = useSound(crowdYeah2);
+  const [playGirlsYeah] = useSound(girlsYeah);
+  const [playKidsYeah] = useSound(kidsYeah);
+  const [playWooYeah] = useSound(wooYeah);
+  const sounds = [playCrowdYeah, playCrowdYeah2, playGirlsYeah, playKidsYeah, playWooYeah];
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [loading, setIsLoading] = useState(true);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
+  const [isAnswered, setIsAnswered] = useState(false);
   const hasFetched = useRef(false);
 
   useEffect(() => {
@@ -59,31 +69,60 @@ const Quiz = () => {
     fetchQuestions();
   }, [categoryID, navigate]);
 
+  const isAnswerCorrect = (answer: string) => {
+    return questions[currentQuestionIndex].correct_answer.toLowerCase() === answer.toLowerCase();
+  }
+
   const handleAnswer = (answer: string) => {
-    if (answer === 'True') {
-      playTrue();
-    } else {
-      playFalse();
-    }
+    if (isAnswered) return;
+
+    setIsAnswered(true); 
     setUserAnswers((prevAnswers) => [...prevAnswers, answer]);
 
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+    if (isAnswerCorrect(answer)) {
+      const randomPlay = sounds[Math.floor(Math.random() * sounds.length)];
+      randomPlay();
     } else {
-      const results = questions.map((question, index) => ({
-        question: question.question,
-        correct_answer: question.correct_answer,
-        user_answer: userAnswers[index] || answer,
-        isCorrect: (userAnswers[index] || answer) === question.correct_answer,
-      }));
-
-      navigate('/results', { state: { results } });
+      playWrong();
     }
+    setTimeout(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      } else {
+        const results = questions.map((question, index) => ({
+          question: question.question,
+          correct_answer: question.correct_answer,
+          user_answer: userAnswers[index] || answer,
+          isCorrect: (userAnswers[index] || answer) === question.correct_answer,
+        }));
+
+        navigate('/results', { state: { results } });
+      }
+
+      setIsAnswered(false);
+    }, 2000);
   };
 
   if (loading) {
     return <Container><h1>Loading...</h1></Container>;
   }
+
+  const renderButton = (value: string, color: string) => {
+    const answerText = isAnswered 
+      ? (isAnswerCorrect(value) ? '✔' : '✘') 
+      : value;
+  
+    return (
+      <Button
+        color={color}
+        onClick={() => handleAnswer(value)}
+        disabled={isAnswered}
+        isCorrect={isAnswered ? isAnswerCorrect(value) : ''}
+      >
+        {answerText}
+      </Button>
+    );
+  };
 
   return (
     <Container>
@@ -92,8 +131,8 @@ const Quiz = () => {
           <h1 dangerouslySetInnerHTML={{ __html: questions[currentQuestionIndex].category}}/>
           <Subtitle dangerouslySetInnerHTML={{ __html: questions[currentQuestionIndex].question }} />
           <Buttons>
-            <Button color="var(--green)" onClick={() => handleAnswer('True')}>True</Button>
-            <Button color="var(--red)" onClick={() => handleAnswer('False')}>False</Button>
+            {renderButton('True', 'var(--greenMedium)')}
+            {renderButton('False', 'var(--red)')}
           </Buttons>
           <Breadcrumb>Question {currentQuestionIndex + 1} of {questions.length}</Breadcrumb>
         </>
