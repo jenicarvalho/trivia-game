@@ -2,6 +2,8 @@
 
 Welcome to **Trivia Game**, the ultimate quiz game to test your knowledge and challenge your friends! Whether you're a trivia enthusiast or just looking to have some fun, this game is for you.
 
+[🎮 CLICK HERE TO PLAY 🎮](https://trivia-game-mu.vercel.app)
+
 ## 📜 Description
 
 **Think you're a trivia game? Can you score 100% and prove it?** Test your knowledge now and see if you can conquer all the levels. With questions ranging from general knowledge to niche topics, there's something for everyone!
@@ -19,7 +21,8 @@ Make sure you have **Node.js** and **npm** (or **yarn**) installed on your machi
    ```bash
    git clone https://github.com/jenicarvalho/trivia-game
    cd trivia-game
-  ```
+   ```
+  
 2. Install the dependencies:
    ```bash
    npm install
